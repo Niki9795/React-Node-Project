@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 150px;
+}
+  
+  .inputBox {
+    padding: 7px;
+    display: block;
+    border: 0.5px solid;
+    width: 300px;
+    margin: 20px;
+    border-radius: 5px;
+  }
+
+  .appButton {
+    margin: 20px;
+    width: 315px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #E83845;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 1000;
+  }
+
+  .forgot-link{
+    margin: 20px;
+    color: black;
+    font-size: small;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    width: 100%;
+    margin: 20px auto;
+}
+
+.no-account-link {
+    font-size: small;
+}
+
+.signin-signup-btn {
+    border: none;
+    background-color: white;
+    text-decoration: underline;
+    cursor: pointer;
+}
+  
