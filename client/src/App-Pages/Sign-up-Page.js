@@ -23,7 +23,10 @@ function SignUpPage() {
         } else if (password.length < 8) {
             alert('Password must be at least 8 characters long');
             return;
-        } 
+        } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password)) {
+            alert('Password must contain at least one uppercase letter, one lowercase letter, and one number');
+            return;
+        }
 
         const response = await fetch('http://localhost:8000/signup', {
             method: 'POST',
