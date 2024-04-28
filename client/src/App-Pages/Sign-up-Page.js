@@ -17,11 +17,19 @@ function SignUpPage() {
 
 
     const handleSignIn = async () => {
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d])/;
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (password !== confirmPassword) {
             alert('Passwords do not match');
             return;
-        } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password)) {
+        } else if (password.length < 8) {
+            alert('Password must be at least 8 characters long');
+            return;
+        } else if (!passwordRegex.test(password)) {
             alert('Password must contain at least one uppercase letter, one lowercase letter, and one number');
+            return;
+        } else if (!emailRegex.test(email)) {
+            alert('Please enter a valid email');
             return;
         }
 
