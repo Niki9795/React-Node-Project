@@ -18,6 +18,7 @@ connectDatabase()
 
   app.post('/signup', async (req, res) => {
     const { firstName: first_name, lastName: last_name, email, password } = req.body;
+    await createTableUsers();
 
     try {
       const userExists = await client.query('SELECT * FROM users WHERE email = $1', [email]);
@@ -26,8 +27,6 @@ connectDatabase()
           res.status(409).send("User already exists");
           return;
       }
-
-        await createTableUsers();
         const query = 'INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4)';
         const values = [first_name, last_name, email, password];
         await client.query(query, values);
