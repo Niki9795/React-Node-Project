@@ -8,6 +8,8 @@ export async function createTableUsers() {
             last_name VARCHAR(50) NOT NULL,
             email VARCHAR(100) NOT NULL,
             password VARCHAR(100) NOT NULL,
+            verification_token VARCHAR(255),
+            is_verified BOOLEAN DEFAULT false,
             CONSTRAINT unique_email UNIQUE(email)
         );`;
         await client.query(query);
