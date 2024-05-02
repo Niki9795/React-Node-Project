@@ -64,6 +64,31 @@ app.get('/verify-email', async (req, res) => {
   }
 });
 
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    
+    try {
+        const result = await client.query('SELECT * FROM users WHERE email = $1', [email]);
+        if (result.rows.length === 0) {
+            return res.status(401).send("Invalid email");
+        }
+        
+        const user = result.rows[0];
+        const isPasswordCorrect = await bcrypt.compare(password, user.password);
+        if (!isPasswordCorrect) {
+            return res.status(401).send("Invalid password");
+        }
+
+        if (!user.is_verified) {
+            return res.status(403).send("Email not verified");
+        }
+
+        res.send("Login successful");
+    } catch (error) {
+        console.error("Error logging in", error);
+    }
+});
+
 app.listen(8000, () => {
     console.log("Server is running on port 8000");
 })
